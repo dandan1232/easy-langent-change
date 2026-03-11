@@ -38,6 +38,13 @@ export default defineConfig({
         ]
       },
       {
+        text: 'Agent技能扩展',
+        items: [
+          { text: '第九章 Agent Skills与lang框架开发与应用', link: '/guide/chapter9' },
+          { text: '第十章 Agent实战：手搓小龙虾（轻量级）', link: '/guide/chapter10' }
+        ]
+      },
+      {
         text: '结语',
         items: [
           { text: '结语', link: '/guide/结语' }
