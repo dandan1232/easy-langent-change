@@ -65,6 +65,7 @@
 | [结语](./docs/guide/结语.md)        | 项目总结与展望   | ✅    |
 | <strong>相关agent项目 |  |  |
 | [狼人杀（上帝视角）](./project/werewolfGameAi/README.md) | 基于langgraph开发 | ✅    |
+| [智能知识库问答](./project/AgenticRag/README.md) | 基于langchain开发 | ✅    |
 
 
 

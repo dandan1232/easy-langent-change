@@ -1,0 +1,55 @@
+# 通用缓存与日志
+node_modules/
+dist/
+build/
+.cache/
+.vite/
+.turbo/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.log
+
+# 环境与敏感文件
+.env
+.env.*
+.DS_Store
+Thumbs.db
+
+# IDE/编辑器
+.vscode/
+.idea/
+.cursor/
+
+# 前端产物
+coverage/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.turbo/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/pnpm-debug.log*
+frontend/*.log
+frontend/pnpm-lock.yaml
+frontend/package-lock.json
+frontend/yarn.lock
+frontend/bun.lockb
+frontend/pnpm-workspace.yaml
+frontend/pnpm-workspace.yaml
+
+# Python/后端
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Notebook 缓存
+.ipynb_checkpoints/
+
+# 数据目录
+backend/data/uploads/
+backend/data/vector_stores/
