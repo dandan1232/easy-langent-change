@@ -64,7 +64,8 @@ pip install langchain langchain-openai python-dotenv langchain-experimental
  **.env 文件**示例
 
 ```
- API_KEY=你的deepseek-api-key
+API_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+BASE_URL="xxxxxx"
 ```
 
 实践代码
@@ -81,7 +82,7 @@ from langchain_openai import ChatOpenAI
 # 加载环境变量（确保.env文件中配置了API_KEY）
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
-BASE_URL = "https://api.deepseek.com"
+BASE_URL = os.getenv("BASE_URL")
 
 # 初始化LLM模型
 llm = ChatOpenAI(
@@ -485,10 +486,10 @@ import os
 # ======================
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
-
+BASE_URL = os.getenv("BASE_URL")
 llm = ChatOpenAI(
     api_key=API_KEY,
-    base_url="https://api.deepseek.com",
+    base_url=BASE_URL,
     model="deepseek-chat",
     temperature=0.3,
 )
@@ -582,7 +583,7 @@ import os
 # ======================
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
-BASE_URL = "https://api.deepseek.com"
+BASE_URL = os.getenv("BASE_URL")
 
 llm = ChatOpenAI(
     api_key=API_KEY,
@@ -747,7 +748,7 @@ import os
 # -------------------
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
-BASE_URL = "https://api.deepseek.com"
+BASE_URL = os.getenv("BASE_URL")
 
 llm = ChatOpenAI(
     api_key=API_KEY,

@@ -136,7 +136,7 @@ import os
 load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
-BASE_URL = "https://api.deepseek.com"
+BASE_URL = os.getenv("BASE_URL")
 
 if not API_KEY:
     raise ValueError("未检测到 API_KEY，请检查 .env 文件是否配置正确")
@@ -343,8 +343,6 @@ print(result.content)
 
 这种方式的优势很明显：模板可以重复使用，参数传递灵活，后续修改提示词风格（比如更正式、更口语），只需要改模板，不用改所有调用代码。
 
-
-
 ### 2.2.2 提示词模板进阶用法：少样本提示模板
 
 有时候，简单的提示词模板不足以让模型理解我们的需求——比如我们希望模型生成“特定格式”的内容（比如分点、带编号、有固定结构）。这时候就需要“少样本提示”：给模型看几个示例，让它照着示例的格式生成内容。LangChain的FewShotPromptTemplate就是专门做这个的。
@@ -424,11 +422,8 @@ print(result.content)
 学科：Python编程
 学习方法：核心目标：掌握基础语法和常用库；学习步骤：1. 学习变量、函数等基础语法 2. 实操小项目（如计算器） 3. 学习Pandas、Matplotlib库；注意事项：多动手实操，遇到错误及时调试。
 
-
-
 学科：机器学习
 学习方法：核心目标：理解基础算法原理和应用场景；学习步骤：1. 复习数学基础（线性代数、概率） 2. 学习经典算法（线性回归、决策树） 3. 用Scikit-learn实操；注意事项：先理解原理，再动 手实现，避免死记硬背。
-
 
 学科：LangChain
 学习方法：
@@ -504,14 +499,7 @@ chat_model = ChatOpenAI(
 with open("learning_method_examples.json", "r", encoding="utf-8") as f:
     data = json.load(f)
     examples = data["subject_examples"]  # 从JSON中提取示例数据
-# 示例文件格式参考（learning_method_examples.json）：
-# [
-#   {"subject": "Python编程（入门）", "difficulty": "easy", "method": "核心目标：掌握基础语法；学习步骤：1.变量与数据类型 2.条件语句；注意事项：边学边练"},
-#   {"subject": "Python编程（进阶）", "difficulty": "hard", "method": "核心目标：掌握面向对象与库开发；学习步骤：1.类与对象 2.模块开发；注意事项：参与开源项目"},
-#   {"subject": "机器学习（入门）", "difficulty": "easy", "method": "核心目标：理解基础概念；学习步骤：1.数据预处理 2.简单模型；注意事项：用Excel辅助理解"},
-#   {"subject": "机器学习（进阶）", "difficulty": "hard", "method": "核心目标：掌握模型优化；学习步骤：1.特征工程 2.超参数调优；注意事项：研读论文复现实验"}
-# ]
-
+# 示例文件格式参考（learning_method_examples.json）前面内容
 
 # 3. ExampleSelector：按长度筛选示例
 example_selector = LengthBasedExampleSelector(
@@ -525,24 +513,24 @@ example_selector = LengthBasedExampleSelector(
 )
 
 # 4. 自定义ExampleSelector：按难度筛选示例（输入含difficulty参数）
-class DifficultyExampleSelector(BaseExampleSelector):
+#class DifficultyExampleSelector(BaseExampleSelector):
     """根据用户输入的 difficulty 字段筛选样本"""
-    def __init__(self, examples: List[Dict[str, str]]):
-        self.examples = examples
+    #def __init__(self, examples: List[Dict[str, str]]):
+        #self.examples = examples
 
-    def add_example(self, example: Dict[str, str]) -> None:
-        self.examples.append(example)
+    #def add_example(self, example: Dict[str, str]) -> None:
+        #self.examples.append(example)
 
-    def select_examples(self, input_variables: Dict[str, str]) -> List[Dict]:
+    #def select_examples(self, input_variables: Dict[str, str]) -> List[Dict]:
         # 获取用户输入的难度等级，如果没有提供则默认为 'easy'
-        target_difficulty = input_variables.get("difficulty", "easy")
+        #target_difficulty = input_variables.get("difficulty", "easy")
 
         # 过滤出匹配难度的所有示例
-        return [ex for ex in self.examples if ex.get("difficulty") == target_difficulty]
+        #return [ex for ex in self.examples if ex.get("difficulty") == target_difficulty]
 
 
-example_selector = DifficultyExampleSelector(examples=examples)
-
+#example_selector = DifficultyExampleSelector(examples=examples)
+#example_selector 从 3 或者 4 里面选择一个执行即可
 
 # 5. 构建工程化少样本模板
 few_shot_prompt = FewShotPromptTemplate(
@@ -581,7 +569,13 @@ print("\n进阶级学习方法：")
 print(result_hard.content)
 ```
 
-运行说明：该案例实现了3个工程化特性：1）示例从JSON文件加载，便于批量维护；2）按难度动态筛选示例，适配不同学习阶段需求；3）控制示例总长度，避免触发模型token限制。
+运行说明：该案例实现了3个工程化特性：
+
+1）示例从JSON文件加载，便于批量维护；
+
+2）按难度动态筛选示例，适配不同学习阶段需求；
+
+3）控制示例总长度，避免触发模型token限制。
 
 #### 2.2.3.3 工程化最佳实践总结
 
@@ -636,7 +630,9 @@ StrOutputParser 的核心作用**不是清洗文本格式**，也不会主动去
 
 在 LangChain 1.0.0 以后, StrOutputParser 是**兼容性最好、稳定性最高、使用成本最低**的输出解析方案,适合作为所有复杂系统的起点。
 
-> **⚠️ 温馨提示**：在 LangChain 新版本（v0.3.x+）中, `StrOutputParser` 的解析结果可能是一个 `TextAccessor` 类型,虽然它的 `print` 时和字符串一样,但 `type()` 检查会显示其真实类型。不过这不影响其作为字符串的后续使用,支持字符串切片、拼接等操作。
+> **⚠️ 温馨提示**：在 LangChain 新版本（v0.3.x+）中, `StrOutputParser` 的解析结果可能是一个 `TextAccessor` 类型,虽然它的 `print` 时和字符串一样,但 `type()` 检查会显示其真实类型。
+>
+> 不过这不影响其作为字符串的后续使用,支持字符串切片、拼接等操作。
 
 ```python
 from langchain_openai import ChatOpenAI

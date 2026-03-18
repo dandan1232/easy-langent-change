@@ -166,8 +166,6 @@ print("LangGraph版本：", version.__version__)
 print("OpenAI版本：", openai.__version__)
 ```
 
-```
-
 > **注意：** LangChain 和 LangGraph 必须安装**1.0.0以后**的版本，1.0.0以前的版本与1.0.0以后的版本不兼容，会对学习产生比较大的影响！！！
 
 **步骤3：配置API密钥**
@@ -187,13 +185,20 @@ print("OpenAI版本：", openai.__version__)
 
 用编辑器打开`.env文件`，写入以下内容（替换成你的API密钥）：
 
-```text
+```python
 # 1. 在项目文件夹（easy-langent）中新建一个文件，命名为".env"（注意前面有个点）
 # 2. 用编辑器打开.env文件，写入以下内容（替换成你的API密钥）：
 API_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+BASE_URL="xxxxxx"
 
-# 3. 在代码中导入dotenv加载密钥（后续案例会用到）
+# 3. 调用环境变量
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+BASE_URL = os.getenv("BASE_URL")  # API地址，使用你的模型对应的地址（如DeepSeek: https://api.deepseek.com）
 ```
+
+> 在配置调用大模型服务时，通常需要输入 API Key、Token 或各类平台密码，为了安全起见一般是将这类密码配置到环境变量中，而不是直接写到代码中，密钥被恶意盗用，将会导致严重的经济损失或隐私泄露。
 
 ### 1.3.3 常见错误解决
 
@@ -220,7 +225,7 @@ load_dotenv()
 
 # 3. 配置 API Key
 API_KEY = os.getenv("API_KEY")
-BASE_URL = "https://api.deepseek.com"
+BASE_URL = os.getenv("BASE_URL")
 
 if not API_KEY:
     raise ValueError("未检测到 API_KEY，请检查 .env 文件是否配置正确")
@@ -229,7 +234,7 @@ if not API_KEY:
 llm = ChatOpenAI(
     api_key=API_KEY,
     base_url=BASE_URL,
-    model="deepseek-chat",
+    model="deepseek-chat",  #注意修改这里的模型名称！！！！ 后面章节不再继续说明
     temperature=0.3
 )
 
@@ -280,7 +285,7 @@ load_dotenv()
 
 # 3. 配置 API Key
 API_KEY = os.getenv("API_KEY")
-BASE_URL = "https://api.deepseek.com"
+BASE_URL = os.getenv("BASE_URL")
 
 if not API_KEY:
     raise ValueError("未检测到 API_KEY，请检查 .env 文件是否配置正确")
@@ -289,7 +294,7 @@ if not API_KEY:
 llm = ChatOpenAI(
     api_key=API_KEY,
     base_url=BASE_URL,
-    model="deepseek-chat",
+    model="deepseek-chat", #注意修改这里的模型名称！！！！ 后面章节不再继续说明
     temperature=0.3
 )
 
@@ -352,7 +357,6 @@ AI时代，学习建议：掌握基础数学与编程，动手实践项目；保
 
 对比LangChain案例：这个案例的核心是“流程管控”——我们明确定义了“生成→精简”的顺序，并且用状态存储了中间结果，这就是LangGraph处理多步骤任务的优势。
 
-## 1.5 本章小结
 ## 1.5 本章小结
 
 1. 核心认知：LangChain是“基础工具包”（快速搭简单应用），LangGraph是“架构框架”（管控复杂流程），两者互补融合；
