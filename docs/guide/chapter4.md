@@ -93,7 +93,7 @@ load_dotenv()
 
 llm = ChatOpenAI(
     api_key=os.getenv("API_KEY"),
-    base_url="https://api.deepseek.com/v1",
+    base_url="https://api.deepseek.com",
     model="deepseek-chat",
     temperature=0.3
 )
@@ -191,7 +191,7 @@ import os
 load_dotenv()
 llm = ChatOpenAI(
     api_key=os.getenv("API_KEY"),
-    base_url="https://api.deepseek.com/v1",
+    base_url="https://api.deepseek.com",
     model="deepseek-chat",
     temperature=0.3
 )
@@ -312,7 +312,7 @@ import os
 load_dotenv()
 llm = ChatOpenAI(
     api_key=os.getenv("API_KEY"),
-    base_url="https://api.deepseek.com/v1",
+    base_url="https://api.deepseek.com",
     model="deepseek-chat",
     temperature=0.3
 )
@@ -493,7 +493,7 @@ from dotenv import load_dotenv
 load_dotenv()
 llm = ChatOpenAI(
     api_key=os.getenv("API_KEY"),
-    base_url="https://api.deepseek.com/v1",
+    base_url="https://api.deepseek.com",
     model="deepseek-chat",
     temperature=0.3
 )
@@ -551,7 +551,7 @@ from dotenv import load_dotenv
 load_dotenv()
 llm = ChatOpenAI(
     api_key=os.getenv("API_KEY"),
-    base_url="https://api.deepseek.com/v1",
+    base_url="https://api.deepseek.com",
     model="deepseek-chat",
     temperature=0.3
 )
@@ -612,7 +612,7 @@ load_dotenv()
 
 # 🔑 使用 OpenAI 的 API 密钥（从环境变量读取）
 api_key = os.getenv("OPENAI_API_KEY")   # 在 .env 中设置 OPENAI_API_KEY=sk-xxxxx
-# 注意：不需要指定 base_url，默认就是 https://api.openai.com/v1
+# 注意：不需要指定 base_url，默认就是 https://api.openai.com
 
 # 1️⃣ 核心链（性能高但可能不稳定）
 core_llm = ChatOpenAI(
