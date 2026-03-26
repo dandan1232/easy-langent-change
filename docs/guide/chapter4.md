@@ -824,14 +824,14 @@ print(f"元数据：{docx_docs[0].metadata}")
 
 ```python
 # 方案1：轻量款（官方推荐，保留MD结构，优先选）
-from langchain_community.document_loaders import MarkdownLoader
+from langchain_community.document_loaders import UnstructuredMarkdownLoader
 import os
 
 # 定义MD路径
 md_path = os.path.join("knowledge_base", "test.md")
 
 # 加载文档（需提前安装python-markdown）
-loader = MarkdownLoader(md_path)
+loader = UnstructuredMarkdownLoader(md_path)
 md_docs = loader.load()
 
 # 查看结果
@@ -855,7 +855,7 @@ print(f"内容预览：{md_docs_univ[0].page_content[:200]}...")
 
 ```python
 from langchain_community.document_loaders import (
-    TextLoader, PyPDFLoader, Docx2txtLoader, MarkdownLoader
+    TextLoader, PyPDFLoader, Docx2txtLoader, UnstructuredMarkdownLoader
 )
 import os
 
@@ -881,7 +881,7 @@ def batch_load_documents(folder_path):
             elif filename.endswith(".docx"):
                 loader = Docx2txtLoader(file_path)
             elif filename.endswith(".md"):
-                loader = MarkdownLoader(file_path)
+                loader = UnstructuredMarkdownLoader(file_path)
             else:
                 print(f"不支持的文件格式：{filename}")
                 continue
@@ -1021,8 +1021,7 @@ md_docs = loader.load()
 text_splitter = MarkdownTextSplitter(
     chunk_size=500,          # MD有标题引导，片段长度可稍大
     chunk_overlap=50,        # 重叠部分避免标题/内容割裂
-    length_function=len,     # 中文用len计数字符
-    separators=["\n\n", "# ", "## ", "### "]  # 优先按标题层级分割，保留语义
+    length_function=len      # 中文用len计数字符
 )
 
 # 4. 执行分割（方法名split_documents在1.x版本无变化）
@@ -1081,7 +1080,10 @@ qwen3-embedding-0.6b是一个相对比较轻量的嵌入模型，因此本节的
 from modelscope import snapshot_download
 model_dir = snapshot_download('Qwen/Qwen3-Embedding-0.6B',cache_dir='./models')
 ```
-
+在使用 `HuggingFaceEmbeddings` 初始化词向量模型时，底层会自动调用 `sentence-transformers` 库。因此需要安装依赖包：
+```bash
+pip install sentence-transformers
+```
 实践代码
 
 ```python
@@ -1546,7 +1548,8 @@ embeddings = HuggingFaceEmbeddings(
 vector_db = FAISS.load_local(
     folder_path="./faiss_db",
     embeddings=embeddings,
-    allow_dangerous_deserialization=True  # 本地开发可用，生产环境需谨慎（存在安全风险）
+    allow_dangerous_deserialization=True,  # 本地开发可用，生产环境需谨慎（存在安全风险）
+    index_name="local_cpu_faiss_index"  # 确保加载正确的索引文件
 )
 
 # 3. 初始化检索器（MMR策略，平衡相关性和多样性，参数无变化）
