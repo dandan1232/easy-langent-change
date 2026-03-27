@@ -1,0 +1,18 @@
+[project]
+name = "easy-langent"
+version = "0.1.0"
+description = "langent由lang与agent合并而来的学习教程"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "docx2txt>=0.9",
+    "ipykernel>=7.2.0",
+    "langchain>=1.2.13",
+    "langchain-community>=0.4.1",
+    "langchain-openai>=1.1.12",
+    "langgraph>=1.1.3",
+    "openai>=2.29.0",
+    "pypdf>=6.9.2",
+    "python-dotenv>=1.2.2",
+    "python-markdown>=0.1.0",
+]
