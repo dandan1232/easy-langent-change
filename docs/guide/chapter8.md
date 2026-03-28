@@ -118,7 +118,7 @@ def init_game_state() -> GameState:
 
 每个核心模块对应一个“节点函数”，节点函数接收当前游戏状态，执行对应逻辑，返回修改后的游戏状态。我们依次实现6个核心模块，每个模块都提供提示词模板。
 
-#### 8.2.3.1 节点1：词语生成模块
+#### 8.2.2.1 节点1：词语生成模块
 
 ```python
 def generate_words(state: GameState) -> GameState:
@@ -154,7 +154,7 @@ def generate_words(state: GameState) -> GameState:
 
 在这个节点中我们增加了容错，如果模型调用失败，则从备用库随机生成
 
-#### 8.2.3.2 节点2：角色分配模块
+#### 8.2.2.2 节点2：角色分配模块
 
 ```python
 def assign_roles(state: GameState) -> GameState:
@@ -174,7 +174,7 @@ def assign_roles(state: GameState) -> GameState:
 
 这里就非常简单了，随机分配角色即可
 
-#### 8.2.3.3 模块3：发言生成模块
+#### 8.2.2.3 模块3：发言生成模块
 
 ```python
 def generate_speeches(state: GameState) -> GameState:
@@ -278,7 +278,7 @@ def generate_speeches(state: GameState) -> GameState:
 
 发言生成的核心是提示词模板，我们明确要求发言的长度、风格，以及平民和卧底的发言差异（平民真实描述，卧底伪装）；同时排除已淘汰的智能体，确保多轮游戏的合理性。
 
-#### 8.2.3.4 模块4：投票模块
+#### 8.2.2.4 模块4：投票模块
 
 ```python
 def vote_undercover(state: GameState) -> GameState:
@@ -357,7 +357,7 @@ def vote_undercover(state: GameState) -> GameState:
 
 投票模块是核心难点，我们添加了多重兜底逻辑——避免投自己、避免投淘汰的玩家、解析失败时随机投票，确保程序稳定运行；同时引导LLM根据发言分析投票，体现智能体的“决策”能力。
 
-#### 8.2.3.5 模块5：胜负判断模块
+#### 8.2.2.5 模块5：胜负判断模块
 
 ```python
 def judge_result(state: GameState) -> GameState:
@@ -391,7 +391,7 @@ def judge_result(state: GameState) -> GameState:
     return state
 ```
 
-#### 8.2.3.6 模块6：结果展示模块
+#### 8.2.2.6 模块6：结果展示模块
 
 ```python
 def show_final_result(state: GameState) -> GameState:
