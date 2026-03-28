@@ -227,8 +227,8 @@ print("OpenAI版本：", openai.__version__)
 用编辑器打开`.env文件`，写入以下内容（替换成你的API密钥）：
 
 ```env
-API_KEY=YOUR_API_KEY
-BASE_URL=https://api.deepseek.com
+API_KEY="YOUR_API_KEY"
+BASE_URL="YOUR_BASE_URL"
 ```
 
 **步骤3.2：在Python代码中调用环境变量**

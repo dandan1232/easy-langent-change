@@ -29,8 +29,8 @@ conda activate langent-env
 用编辑器打开**.env文件**，写入以下内容（替换成你的API密钥）：
 
 ```
-API_KEY=XXXXXXXXX
-BASE_URL=https://api.example.com  # API地址，使用你的模型对应的地址（如DeepSeek: https://api.deepseek.com）
+API_KEY="YOUR_API_KEY"
+BASE_URL="YOUR_BASE_URL"  # API地址，使用你的模型对应的地址（如DeepSeek: https://api.deepseek.com）
 ```
 
 做好这些准备，我们就出发吧！
