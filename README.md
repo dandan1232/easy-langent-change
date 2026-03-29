@@ -59,10 +59,10 @@
 | [第六章 LangGraph基础：有状态工作流与核心概念实操](./docs/guide/chapter6.md) | 有状态工作流、节点、边、状态管理 | ✅    |
 | [第七章 LangGraph进阶：多智能体协作与复杂流程管控](./docs/guide/chapter7.md) | 多智能体协作、复杂流程管控 | ✅    |
 | [第八章 综合实战：构建"谁是卧底"游戏智能体](./docs/guide/chapter8.md) | 综合实战 | ✅    |
-| <strong>第四部分：Agent技能扩展</strong> |  |  |
+| [结语](./docs/guide/结语.md)        | 项目总结与展望   | ✅    |
+| <strong>扩展章节：Agent技能扩展</strong> |  |  |
 | [第九章 Agent Skills与lang框架开发与应用](./docs/guide/chapter9.md) | Skills 扩展 | 🚧    |
 | [第十章 Agent实战：手搓小龙虾（轻量级）](./docs/guide/chapter10.md) | 基于lang框架动手开发openclaw项目 | 🚧    |
-| [结语](./docs/guide/结语.md)        | 项目总结与展望   | ✅    |
 | <strong>相关agent项目</strong> |  |  |
 | [狼人杀（上帝视角）](./project/werewolfGameAi/README.md) | 基于langgraph开发 | ✅    |
 | [智能知识库问答](./project/AgenticRag/README.md) | 基于langchain开发 | ✅    |
