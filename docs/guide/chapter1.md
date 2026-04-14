@@ -172,7 +172,7 @@ uv venv
 # Windows（PowerShell）
 .\.venv\Scripts\Activate.ps1
 # Mac / Linux
-source source .venv/bin/activate
+source .venv/bin/activate
 ```
 
 
