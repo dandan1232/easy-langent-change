@@ -501,7 +501,7 @@ display(Image(graph.get_graph().draw_mermaid_png()))
 
 ```python
 def route_by_intent(state: TaskState):
-    if state.intent == "summarize":
+    if state["intent"] == "summarize":
         return "summarize_node"
     else:
         return "rewrite_node"
@@ -581,7 +581,7 @@ def loop_node(state: TaskState):
 
 #=======循环条件函数======
 def loop_router(state: TaskState):
-    if state.progress >= 100:
+    if state["progress"] >= 100:
         return "final_node"
     return "loop_node"
 
