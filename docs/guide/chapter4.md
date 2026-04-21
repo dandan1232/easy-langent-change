@@ -357,10 +357,10 @@ router_prompt = ChatPromptTemplate.from_messages([
 router_chain = router_prompt | llm | StrOutputParser()
 
 # 4. 定义默认链（兜底处理）
-default_prompt = PromptTemplate(
-    input_variables=["query"],
-    template="抱歉，我无法解答你的问题'{query}'。请你重新描述问题，或者联系人工客服（工作时间：9:00-18:00）。"
-)
+default_prompt = ChatPromptTemplate.from_messages([
+    ("system", "你是智能客服。当遇到无法解答的问题时，请礼貌地告知用户你暂时无法处理该问题，并引导用户重新描述具体问题，或提供联系人工客服的方式（工作时间：9:00-18:00）。语气要友善、专业。"),
+    ("human", "用户问题：{query}\n请生成合适的回复。")
+])
 default_chain = default_prompt | llm | StrOutputParser()
 
 # 5. 构建完整路由链（核心：RunnableBranch实现条件分发）
