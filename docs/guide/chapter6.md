@@ -576,8 +576,9 @@ display(Image(graph.get_graph().draw_mermaid_png()))
 ```python
 #=======循环节点======
 def loop_node(state: TaskState):
-    print("\n🔄 loop_node, progress =", state.progress)
-    return {"progress": state.progress + 30}
+    progress = state.get("progress", 0)
+    print("\n🔄 loop_node, progress =", progress)
+    return {"progress": progress + 30}
 
 #=======循环条件函数======
 def loop_router(state: TaskState):
