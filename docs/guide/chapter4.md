@@ -1611,13 +1611,13 @@ custom_prompt = ChatPromptTemplate.from_messages([
 # 3. 用LCEL构建完整检索-生成链（管道符串联组件，数据流式传递）
 rag_qa_chain = (
     # 第一步：并行处理输入（传递用户问题+检索文档）
-    {"context": retriever | format_docs, "question": RunnablePassthrough()},
+    {"context": retriever | format_docs, "question": RunnablePassthrough()}
     # 第二步：将格式化数据传入提示词模板
-    custom_prompt,
+    | custom_prompt
     # 第三步：传入大模型生成答案
-    llm,
+    | llm
     # 第四步：解析输出（统一为字符串格式）
-    StrOutputParser()
+    | StrOutputParser()
 )
 
 # 补充：如需返回检索的源文档（用于验证答案来源），可调整链结构：
