@@ -284,7 +284,9 @@ def supervisor_node(state: TaskState):
 
     res = llm.invoke(prompt)
     thoughts = res.content.strip()
-    next_agent = thoughts.splitlines()[-1].strip()
+    last_line = thoughts.splitlines()[-1]
+    valid_agents = ("research_agent", "writer_agent", "code_agent", "math_agent", "end")
+    next_agent = next((a for a in valid_agents if a in last_line), "end")
     print(f"🧠 主管思考过程：\n{thoughts}\n")
     print(f"🧠 主管调度 → {next_agent} (轮次 {new_round})")
     
