@@ -61,12 +61,13 @@
 
 ## 🤖 智能体 Agent 项目合集
 **📌 组队学习优秀课程项目**
-| 项目名称                                              | 备注                    | 
-| ------------------------------------------------- | ---------------------------- |
-| [狼人杀（上帝视角）](./project/werewolfGameAi/README.md) | 基于langgraph开发 |
-| [智能知识库问答](./project/AgenticRag/README.md) | 基于langchain开发 |
-| [MCPChat](./project/MCPChat/README.md) | 基于langchain开发 |
-| [数据处理智能体](./project/DataAgent/README.md) | 基于langchain开发 |
+| 项目名称                                                 | 备注              | 作者    |
+| -------------------------------------------------------- | ----------------- | ------- |
+| [狼人杀（上帝视角）](./project/werewolfGameAi/README.md) | 基于langgraph开发 | 内测组  |
+| [智能知识库问答](./project/AgenticRag/README.md)         | 基于langchain开发 | jspi-fu |
+| [MCPChat](./project/MCPChat/README.md)                   | 基于langchain开发 | jspi-fu |
+| [数据处理智能体](./project/DataAgent/README.md)          | 基于langchain开发 | jspi-fu |
+| [医疗RAG诊断](./project/MedicalRag/README.md)            | 基于langchain开发  |道法自然|
 
 ## ✨核心贡献者
 - [牧小熊-项目负责人](https://github.com/muxiaoxiong)(Datawhale成员)
