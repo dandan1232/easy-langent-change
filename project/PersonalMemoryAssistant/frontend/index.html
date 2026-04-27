@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>个人生活记忆助手</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="chat-panel" aria-label="聊天">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Personal Memory</p>
+            <h1>个人生活记忆助手</h1>
+          </div>
+          <button class="ghost-button" id="clearButton" type="button">清空</button>
+        </header>
+
+        <div class="message-list" id="messageList" aria-live="polite">
+          <article class="message assistant-message">
+            <p>我会记住你在对话里提到的偏好、计划和限制，并在合适的时候提醒你。</p>
+          </article>
+        </div>
+
+        <div class="quick-row" aria-label="快捷输入">
+          <button type="button" data-example="我最近胃不太舒服，先少吃辣。">少吃辣</button>
+          <button type="button" data-example="我上周说想买一个机械键盘。">想买键盘</button>
+          <button type="button" data-example="我今天准备点外卖。">点外卖</button>
+        </div>
+
+        <form class="composer" id="chatForm">
+          <textarea
+            id="messageInput"
+            rows="2"
+            placeholder="输入一句话，比如：我今天要去超市。"
+            autocomplete="off"
+          ></textarea>
+          <button class="send-button" id="sendButton" type="submit">发送</button>
+        </form>
+      </section>
+
+      <aside class="memory-panel" aria-label="长期记忆">
+        <div class="memory-heading">
+          <div>
+            <p class="eyebrow">Memory Store</p>
+            <h2>长期记忆</h2>
+          </div>
+          <span class="status-dot" id="statusDot">就绪</span>
+        </div>
+        <div class="memory-grid" id="memoryGrid"></div>
+      </aside>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
