@@ -99,6 +99,8 @@ from dotenv import load_dotenv
 
 # 加载环境变量
 load_dotenv()
+API_KEY = os.getenv("API_KEY")
+BASE_URL = os.getenv("BASE_URL")
 
 # 1. 定义全局状态（所有智能体共享的数据，v1.0.0+ 推荐用TypedDict规范状态）
 class AgentState(TypedDict):
@@ -107,7 +109,12 @@ class AgentState(TypedDict):
     polished_content: Optional[str]  # 润色后内容
 
 # 2. 初始化3个“专业智能体”（分工明确）
-llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7)
+llm = ChatOpenAI(
+    api_key=API_KEY,
+    base_url=BASE_URL,
+    model="deepseek-chat",
+    temperature=0.7
+)
 
 # 智能体1：写短文（只负责“写”，不考虑纠错和润色）
 writer_prompt = ChatPromptTemplate.from_messages([
